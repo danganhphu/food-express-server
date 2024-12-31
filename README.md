@@ -27,4 +27,4 @@ The application is in development status. You are feel free to submit pull reque
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=danganhphu/flight-booking-server.git&type=Date)](https://star-history.com/#danganhphu/flight-booking-server.git&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=danganhphu/airline-suite-server&type=Date)](https://star-history.com/#danganhphu/airline-suite-server&Date)
