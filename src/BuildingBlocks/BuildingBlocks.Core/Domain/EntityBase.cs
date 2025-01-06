@@ -1,19 +1,19 @@
-﻿using BuildingBlocks.Core.Domain.Abstractions;
-using BuildingBlocks.Core.Domain.Events;
+﻿using BuildingBlocks.Core.IdsGenerator;
 
 namespace BuildingBlocks.Core.Domain;
 
-/// <summary>
-/// For use with Vogen or similar tools for generating code for 
-/// strongly typed Ids.
-/// </summary>
-/// <typeparam name="T"></typeparam>
-/// <typeparam name="TId"></typeparam>
-public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IHaveAudit, IHaveDelete
-    where T : EntityBase<T, TId>
-    where TId : notnull
+public abstract class EntityBase<TId> : HasDomainEventsBase
+    where TId : struct, IEquatable<TId>
 {
-    public TId Id { get; set; } = default!;
+    public TId Id { get; protected init; }
+}
+
+public abstract class EntityBase : EntityBase<Guid>, IHaveVersion, IHaveAudit, IHaveDelete
+{
+    protected EntityBase()
+    {
+        Id = GuidIdGenerator.NewGuid();
+    }
 
     public Guid Version { get; set; }
 

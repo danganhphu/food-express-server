@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using BuildingBlocks.Core.Domain.Abstractions;
-
-namespace BuildingBlocks.Core.Domain.Events;
+﻿namespace BuildingBlocks.Core.Domain.Events;
 
 public abstract class HasDomainEventsBase : IHasDomainEvents
 {
