@@ -7,14 +7,16 @@ section of this repository.
 
 High-level plan is represented in the table
 
-| Feature          | Status      |
-|------------------|-------------|
-| Building Blocks  | In Progress |
-| API Gateway      | In Progress |
-| Identity Service | In Progress |
-| Flight Service   | In Progress |
-| Customer Service | In Progress |
-| Booking Service  | In Progress |
+| Feature           | Status      |
+|-------------------|-------------|
+| Building Blocks   | In Progress |
+| API Gateway       | In Progress |
+| Identity Service  | In Progress |
+| Catalogs Service  | In Progress |
+| Customers Service | In Progress |
+| Orders Service    | In Progress |
+| Reviews Service   | In Progress |
+| Shipping Service  | In Progress |
 
 ## Contribution
 
