@@ -1,0 +1,29 @@
+﻿// Global using directives
+
+global using System.Collections.Immutable;
+global using System.ComponentModel.DataAnnotations;
+global using System.Diagnostics;
+global using System.Diagnostics.Metrics;
+global using System.Security.Claims;
+global using BuildingBlocks.Constants;
+global using BuildingBlocks.Core.Clock;
+global using BuildingBlocks.Core.Domain.Abstractions;
+global using BuildingBlocks.Core.IdsGenerator;
+global using BuildingBlocks.SharedKernel.ActivityScope;
+global using BuildingBlocks.SharedKernel.Identity;
+global using BuildingBlocks.SharedKernel.OpenTelemetry;
+global using MassTransit;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using OpenTelemetry;
+global using OpenTelemetry.Context.Propagation;
+global using Serilog;
+global using Serilog.Core;
+global using Serilog.Events;
+global using Serilog.Filters;

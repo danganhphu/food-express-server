@@ -1,6 +1,6 @@
 ﻿namespace BuildingBlocks.Constants;
 
-public static class ServiceNameDb
+public static partial class ServiceName
 {
     public const string Identity = "identitydb";
 

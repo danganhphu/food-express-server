@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Core.Domain.Events;
-
-namespace BuildingBlocks.Core.Domain.Abstractions;
+﻿namespace BuildingBlocks.Core.Domain.Abstractions;
 
 public interface IHasDomainEvents
 {

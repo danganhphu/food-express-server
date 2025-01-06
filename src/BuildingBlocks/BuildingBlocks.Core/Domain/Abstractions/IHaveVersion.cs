@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BuildingBlocks.Core.Domain.Abstractions;
+﻿namespace BuildingBlocks.Core.Domain.Abstractions;
 
 public interface IHaveVersion
 {

@@ -22,9 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{12
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Core", "src\BuildingBlocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj", "{2DCD69E9-23A1-4CF6-85DD-6E433ED17D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineSuite.AppHost", "src\Aspire\AirlineSuite.AppHost\AirlineSuite.AppHost.csproj", "{827A850A-0F9D-41DA-AA7B-8113955B450B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodExpress.AppHost", "src\Aspire\FoodExpress.AppHost\FoodExpress.AppHost.csproj", "{827A850A-0F9D-41DA-AA7B-8113955B450B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineSuite.ServiceDefaults", "src\Aspire\AirlineSuite.ServiceDefaults\AirlineSuite.ServiceDefaults.csproj", "{52E60E5E-5D17-4439-88D9-F527E5948964}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodExpress.ServiceDefaults", "src\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj", "{52E60E5E-5D17-4439-88D9-F527E5948964}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{5E17FFC4-713B-477E-ABDF-5C8274D59A12}"
 EndProject
