@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		.editorconfig = .editorconfig
 		stylecop.json = stylecop.json
 		README.md = README.md
+		.justfile = .justfile
+		.env = .env
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{75C3A178-F8F7-4C0F-A426-EF48B4838674}"
