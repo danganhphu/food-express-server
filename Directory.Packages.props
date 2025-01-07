@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Version together with ASP.NET -->
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageVersion Include="Ardalis.Specification" Version="8.0.0" />
     <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.5-beta" />
     <PackageVersion Include="MassTransit" Version="8.3.4" />

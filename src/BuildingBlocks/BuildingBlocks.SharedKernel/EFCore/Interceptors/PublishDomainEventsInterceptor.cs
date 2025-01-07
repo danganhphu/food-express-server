@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Core.Domain;
+using BuildingBlocks.Core.Domain.Events;
 using MediatR;
 
 namespace BuildingBlocks.SharedKernel.EFCore.Interceptors;
@@ -26,7 +27,7 @@ public sealed class PublishDomainEventsInterceptor(IPublisher publisher)
             return;
 
         var domainEntities = context
-                             .ChangeTracker.Entries<EntityBase>()
+                             .ChangeTracker.Entries<HasDomainEventsBase>()
                              .Where(x => x.Entity.DomainEvents.Count != 0)
                              .ToImmutableList();
 

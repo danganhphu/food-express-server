@@ -1,19 +1,17 @@
-﻿using BuildingBlocks.Core.IdsGenerator;
+﻿namespace BuildingBlocks.Core.Domain;
 
-namespace BuildingBlocks.Core.Domain;
-
-public abstract class EntityBase<TId> : HasDomainEventsBase
-    where TId : struct, IEquatable<TId>
+/// <summary>
+/// ref: https://github.com/ardalis/Ardalis.SharedKernel/blob/main/src/Ardalis.SharedKernel/EntityBase.cs
+/// For use with Vogen or similar tools for generating code for 
+/// strongly typed Ids.
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="TId"></typeparam>
+public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IHaveAudit, IHaveDelete
+    where T : EntityBase<T, TId>
+    where TId : notnull
 {
-    public TId Id { get; protected init; }
-}
-
-public abstract class EntityBase : EntityBase<Guid>, IHaveVersion, IHaveAudit, IHaveDelete
-{
-    protected EntityBase()
-    {
-        Id = GuidIdGenerator.NewGuid();
-    }
+    public TId Id { get; set; } = default!;
 
     public Guid Version { get; set; }
 
