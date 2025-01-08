@@ -12,6 +12,9 @@
     <!-- Version together with ASP.NET -->
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageVersion Include="Ardalis.Specification" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.0.0-preview.5.24551.3" />
+    <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
+    <PackageVersion Include="Duende.BFF.Yarp" Version="3.0.0-preview.3" />
     <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.5-beta" />
     <PackageVersion Include="MassTransit" Version="8.3.4" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.4" />
@@ -21,6 +24,7 @@
     <!-- Microsoft.Extensions Version -->
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="$(MicrosoftExtensionsVersion)" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.0.0" />
     <!-- Open Telemetry -->
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.11.0-rc.1" />

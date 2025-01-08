@@ -1,7 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+    <PackageReference Include="Aspire.Keycloak.Authentication" />
+    <PackageReference Include="Duende.BFF.Yarp" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery.Yarp" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" />
+  </ItemGroup>
+  
 </Project>

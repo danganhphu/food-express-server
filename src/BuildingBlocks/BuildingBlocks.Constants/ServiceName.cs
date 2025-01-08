@@ -2,7 +2,7 @@
 
 public static partial class ServiceName
 {
-    public const string IdentityProvider = "identityprodiver";
+    public const string IdentityProvider = "identity-prodiver";
 
     public const string EventBus = "eventbus";
 
