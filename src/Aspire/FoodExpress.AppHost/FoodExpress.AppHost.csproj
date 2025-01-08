@@ -14,14 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\..\KeycloakClients\food-express-realm.json">
-      <Link>Keycloak\food-express-realm.json</Link>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\ApiGateway\FoodExpress.ApiGateway\FoodExpress.ApiGateway.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" IsAspireProjectResource="false"/>
+    <ProjectReference Include="..\..\Services\Ordering\Services.Ordering.Api\Services.Ordering.Api.csproj" />
   </ItemGroup>
 
 </Project>

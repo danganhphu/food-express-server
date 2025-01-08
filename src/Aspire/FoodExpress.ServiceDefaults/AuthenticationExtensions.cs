@@ -1,9 +1,4 @@
-﻿using BuildingBlocks.Constants;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace FoodExpress.ServiceDefaults;
+﻿namespace FoodExpress.ServiceDefaults;
 
 public static class AuthenticationExtensions
 {
@@ -19,7 +14,10 @@ public static class AuthenticationExtensions
             return builder;
         }
 
+    #pragma warning disable S125
+
         // JsonWebTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+    #pragma warning restore S125
 
         builder.Services.AddAuthentication()
                .AddKeycloakJwtBearer(

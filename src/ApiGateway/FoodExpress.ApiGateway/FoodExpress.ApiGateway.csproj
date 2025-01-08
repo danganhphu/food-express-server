@@ -5,6 +5,7 @@
     <PackageReference Include="Duende.BFF.Yarp" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery.Yarp" />
+    <PackageReference Include="Yarp.ReverseProxy" />
   </ItemGroup>
   
   <ItemGroup>

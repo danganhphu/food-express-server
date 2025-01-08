@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace FoodExpress.ServiceDefaults;
+﻿namespace FoodExpress.ServiceDefaults;
 
 public static class ConfigurationExtensions
 {
