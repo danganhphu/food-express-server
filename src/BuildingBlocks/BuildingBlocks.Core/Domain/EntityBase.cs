@@ -7,7 +7,7 @@
 /// </summary>
 /// <typeparam name="T"></typeparam>
 /// <typeparam name="TId"></typeparam>
-public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IHaveAudit, IHaveDelete
+public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IHaveAudit, IHaveDelete, ISoftDelete
     where T : EntityBase<T, TId>
     where TId : notnull
 {
@@ -23,4 +23,8 @@ public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IH
 
     public DateTimeOffset? Deleted { get; set; }
     public Guid? DeletedBy { get; set; }
+    public bool IsDeleted { get; set; }
+
+    public void Delete()
+        => IsDeleted = true;
 }
