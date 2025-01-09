@@ -1,74 +1,18 @@
-using FoodExpress.ApiGateway;
-using FoodExpress.ServiceDefaults;
-using FoodExpress.ServiceDefaults.OpenApi;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddBff().AddRemoteApis();
+builder.AddConfigureReverseProxy(builder.Configuration);
 
-builder
-    .Services.AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
-    .AddServiceDiscoveryDestinationResolver()
-    .AddBffExtensions();
+builder.AddOAuthProxy(builder.Configuration);
 
-Configuration config = new();
-builder.Configuration.Bind("BFF", config);
+builder.AddAuthorizationPolicies();
 
-builder
-    .Services.AddAuthentication(
-        options =>
-        {
-            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
-        })
-    .AddCookie(
-        CookieAuthenticationDefaults.AuthenticationScheme,
-        options =>
-        {
-            options.Cookie.Name = "__Host-bff";
-            options.Cookie.SameSite = SameSiteMode.Strict;
-        })
-    .AddKeycloakOpenIdConnect(
-        ServiceName.IdentityProvider,
-        nameof(FoodExpress),
-        OpenIdConnectDefaults.AuthenticationScheme,
-        options =>
-        {
-            options.ClientId = config.ClientId;
-            options.ClientSecret = config.ClientSecret;
-            options.UsePkce = true;
-
-            options.ResponseType = OpenIdConnectResponseType.Code;
-            options.ResponseMode = OpenIdConnectResponseMode.Query;
-
-            options.GetClaimsFromUserInfoEndpoint = true;
-            options.MapInboundClaims = false;
-            options.SaveTokens = true;
-
-            options.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
-
-            options.Scope.Clear();
-
-            foreach (var scope in config.Scopes)
-            {
-                options.Scope.Add(scope);
-            }
-
-            options.TokenValidationParameters.ValidIssuers = [config.Authority];
-        #pragma warning disable CA5404
-            options.TokenValidationParameters.ValidateAudience = false;
-        #pragma warning restore CA5404
-        });
+builder.AddConfigureCache();
 
 builder.AddRateLimiting();
-
-builder.AddDefaultOpenApi();
 
 var app = builder.Build();
 
@@ -76,20 +20,44 @@ app.MapDefaultEndpoints();
 
 app.UseRateLimiter();
 
-app.UseAuthentication();
-app.UseBff();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapBffManagementEndpoints();
-app.MapBffReverseProxy();
+app.MapGet("/welcome", () => Results.Ok("Welcome to API Gateway"));
 
-if (config.Apis.Count != 0)
-{
-    foreach (var api in config.Apis)
+// Login endpoint
+app.MapGet(
+    "/account/login",
+    [Authorize](HttpContext context) => Results.Redirect("/welcome"));
+
+// Info endpoint
+app.MapGet(
+    "/account/info",
+    (HttpContext context) =>
     {
-        app.MapRemoteBffApiEndpoint(api.LocalPath, api.RemoteUrl!)
-           .RequireAccessToken(api.RequiredToken);
-    }
-}
+        var claims = context.User.Claims.Select(x => new { x.Type, x.Value }).ToList();
+
+        return Results.Ok(claims);
+    });
+
+// Logout endpoint
+app.MapGet(
+    "/account/logout",
+    [Authorize] async (HttpContext context) =>
+    {
+        var prop = new AuthenticationProperties
+        {
+            RedirectUri = "/account/public"
+        };
+
+        await context.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme, prop);
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        return Results.Redirect("/welcome");
+    });
+
+app.MapReverseProxy();
+
+
 await app.RunAsync();

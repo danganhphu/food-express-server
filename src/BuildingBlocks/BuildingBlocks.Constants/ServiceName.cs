@@ -8,7 +8,7 @@ public static partial class ServiceName
 
     public const string Postgres = "postgres";
 
-    public const string Redis = "redis";
+    public const string Redis = "redis-cache";
 
     public const string Blob = "blob";
 

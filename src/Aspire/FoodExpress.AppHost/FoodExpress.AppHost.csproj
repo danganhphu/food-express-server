@@ -11,11 +11,12 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" />
     <PackageReference Include="Aspire.Hosting.Keycloak" />
+    <PackageReference Include="Aspire.Hosting.Redis" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\ApiGateway\FoodExpress.ApiGateway\FoodExpress.ApiGateway.csproj" />
-    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" IsAspireProjectResource="false"/>
+    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\..\Services\Ordering\Services.Ordering.Api\Services.Ordering.Api.csproj" />
   </ItemGroup>
 

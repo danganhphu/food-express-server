@@ -198,9 +198,9 @@ internal static class OpenApiOptionsExtensions
             var securityScheme = new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.OAuth2,
-                Flows = new OpenApiOAuthFlows
+                Flows = new()
                 {
-                    AuthorizationCode = new OpenApiOAuthFlow
+                    AuthorizationCode = new()
                     {
                         AuthorizationUrl =
                             new($"{identityUrlExternal}/realms/{nameof(FoodExpress)}/protocol/openid-connect/auth"),

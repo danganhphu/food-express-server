@@ -1,6 +1,4 @@
-﻿using Duende.Bff;
-
-namespace FoodExpress.ApiGateway;
+﻿namespace FoodExpress.ApiGateway;
 
 /// <summary>
 ///     Configuration section
@@ -25,5 +23,4 @@ internal class Api
 {
     public string? LocalPath { get; set; }
     public string? RemoteUrl { get; set; }
-    public TokenType RequiredToken { get; set; }
 }

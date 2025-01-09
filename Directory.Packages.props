@@ -15,12 +15,15 @@
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageVersion Include="Ardalis.Specification" Version="8.0.0" />
     <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.0.0-preview.5.24551.3" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="9.0.0" />
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
-    <PackageVersion Include="Duende.BFF.Yarp" Version="3.0.0-preview.3" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.0.0" />
+    <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.0.0" />
     <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.5-beta" />
     <PackageVersion Include="MassTransit" Version="8.3.4" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.4" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspnetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <!-- Microsoft.Extensions Version -->

@@ -21,7 +21,7 @@ var summaries = new[]
 };
 
 app.MapGet(
-       "api/weatherforecast",
+       "/weatherforecast",
        () =>
        {
            var forecast = Enumerable.Range(1, 5).Select(
