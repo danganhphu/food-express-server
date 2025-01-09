@@ -2,6 +2,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddForwardedHeaders();
 
+var postgresUser = builder.AddParameter("SqlUser", true);
+var postgresPassword = builder.AddParameter("SqlPassword", true);
+
 var launchProfileName = builder.Configuration["DOTNET_LAUNCH_PROFILE"] ?? "http";
 
 // Keycloak resource
@@ -16,12 +19,27 @@ var redis = builder
             .WithDataVolume(isReadOnly: false)
             .WithLifetime(ContainerLifetime.Persistent);
 
+var postgres = builder
+               .AddPostgres(ServiceName.Postgres, postgresUser, postgresPassword, 5432)
+               .WithDataVolume(isReadOnly: false)
+               .WithLifetime(ContainerLifetime.Persistent);
+
+var catalogDb = postgres.AddDatabase(ServiceName.Catalog);
+
 if (builder.Environment.IsDevelopment())
 {
     identityProvider.WithRealmImport("./Keycloak/");
 }
 
 var identityEndpoint = identityProvider.GetEndpoint(launchProfileName);
+
+// catalog service api
+var catalogApi = builder.AddProject<Services_Catalog_Api>(ResourceNameApi.Catalog)
+                        .WithReference(identityProvider)
+                        .WithReference(catalogDb)
+                        .WaitFor(identityProvider)
+                        .WaitFor(catalogDb)
+                        .WithEnvironment(EnvironmentNameService.Identity, identityEndpoint);
 
 // ordering service api
 var orderingApi = builder.AddProject<Services_Ordering_Api>(ResourceNameApi.Order)
@@ -40,14 +58,8 @@ var gateway = builder.AddProject<FoodExpress_ApiGateway>(ResourceNameApi.Gateway
                      .WithExternalHttpEndpoints();
 
 identityProvider
+    .WithEnvironment(EnvironmentNameService.Catalog, catalogApi.GetEndpoint(launchProfileName))
     .WithEnvironment(EnvironmentNameService.Ordering, orderingApi.GetEndpoint(launchProfileName))
     .WithEnvironment(EnvironmentNameService.Gateway, gateway.GetEndpoint(launchProfileName));
-
-//
-// gateway
-//     .WithEnvironment("BFF__Authority", identityEndpoint)
-//     .WithEnvironment(
-//         "BFF__Api__RemoteUrl",
-//         "http://localhost:5272/api");
 
 await builder.Build().RunAsync();
