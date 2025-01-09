@@ -547,10 +547,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "ze4SQDpbyBlB72kdTCTv8ecSWsJHf2Js",
       "redirectUris": [
-        "${Services__Ordering}/*"
+        "http://localhost:5272/*"
       ],
       "webOrigins": [
-        "${Services__Ordering}"
+        "http://localhost:5272"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -938,10 +938,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "Wfm5OUk1MrLNMd7gREqWsHYTNB2bJyOF",
       "redirectUris": [
-        ""
+        "http://localhost:5278/*"
       ],
       "webOrigins": [
-        ""
+        "http://localhost:5278/"
       ],
       "notBefore": 0,
       "bearerOnly": false,
