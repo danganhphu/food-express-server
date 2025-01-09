@@ -300,7 +300,6 @@
         }
       ],
       "ordering-openapi": [],
-      "gateway-openapi": [],
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],
@@ -585,61 +584,6 @@
         "phone",
         "offline_access",
         "orderingAll",
-        "microprofile-jwt"
-      ]
-    },
-    {
-      "id": "016c17d1-8e0f-4a67-9116-86b4691bf77r",
-      "clientId": "gateway-openapi",
-      "name": "Gateway OpenAPI with Scalar",
-      "description": "",
-      "rootUrl": "",
-      "adminUrl": "",
-      "baseUrl": "",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": false,
-      "clientAuthenticatorType": "client-secret",
-      "secret": "Wfm5OUk1MrLNMd7gREqWsHYTNB2bJyOF",
-      "redirectUris": [
-        "http://localhost:5278/*"
-      ],
-      "webOrigins": [
-        "http://localhost:5278"
-      ],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": true,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
-      "publicClient": true,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "oidc.ciba.grant.enabled": "false",
-        "post.logout.redirect.uris": "+",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
-        "backchannel.logout.revoke.offline.tokens": "false"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "profile",
-        "roles",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "orderingAll",
-        "catalog",
         "microprofile-jwt"
       ]
     },
@@ -994,10 +938,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "Wfm5OUk1MrLNMd7gREqWsHYTNB2bJyOF",
       "redirectUris": [
-        ""
+        "http://localhost:5278/*"
       ],
       "webOrigins": [
-        ""
+        "http://localhost:5278/"
       ],
       "notBefore": 0,
       "bearerOnly": false,
