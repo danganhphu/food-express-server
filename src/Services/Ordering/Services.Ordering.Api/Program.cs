@@ -1,18 +1,19 @@
+using FoodExpress.ServiceDefaults;
+using FoodExpress.ServiceDefaults.OpenApi;
+using Services.Ordering.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.AddServiceDefaults();
+
+builder.AddApplicationServices();
+
+builder.AddDefaultOpenApi();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
+app.MapDefaultEndpoints();
 
 var summaries = new[]
 {
@@ -33,11 +34,15 @@ app.MapGet(
 
            return forecast;
        })
-   .WithName("GetWeatherForecast");
+   .WithName("GetWeatherForecast")
+   .RequireAuthorization();
 
-app.Run();
+app.UseApplicationServices();
+app.UseDefaultOpenApi();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+await app.RunAsync();
+
+public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }

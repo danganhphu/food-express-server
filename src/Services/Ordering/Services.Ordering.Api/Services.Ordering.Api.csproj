@@ -2,5 +2,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj" />
+  </ItemGroup>
 
 </Project>

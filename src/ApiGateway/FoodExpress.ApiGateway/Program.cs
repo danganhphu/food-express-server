@@ -1,41 +1,63 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.AddServiceDefaults();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.AddConfigureReverseProxy(builder.Configuration);
+
+builder.AddOAuthProxy(builder.Configuration);
+
+builder.AddAuthorizationPolicies();
+
+builder.AddConfigureCache();
+
+builder.AddRateLimiting();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapDefaultEndpoints();
 
-app.UseHttpsRedirection();
+app.UseRateLimiter();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/welcome", () => Results.Ok("Welcome to API Gateway"));
+
+// Login endpoint
+app.MapGet(
+    "/account/login",
+    [Authorize](HttpContext context) => Results.Redirect("/welcome"));
+
+// Info endpoint
+app.MapGet(
+    "/account/info",
+    (HttpContext context) =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+        var claims = context.User.Claims.Select(x => new { x.Type, x.Value }).ToList();
 
-app.Run();
+        return Results.Ok(claims);
+    });
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+// Logout endpoint
+app.MapGet(
+    "/account/logout",
+    [Authorize] async (HttpContext context) =>
+    {
+        var prop = new AuthenticationProperties
+        {
+            RedirectUri = "/account/public"
+        };
+
+        await context.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme, prop);
+        await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        return Results.Redirect("/welcome");
+    });
+
+app.MapReverseProxy();
+
+
+await app.RunAsync();

@@ -1,6 +1,6 @@
 ﻿namespace BuildingBlocks.Constants;
 
-public static class EnvironmentName
+public static class EnvironmentNameService
 {
     public const string Identity = "Identity__Url";
 
