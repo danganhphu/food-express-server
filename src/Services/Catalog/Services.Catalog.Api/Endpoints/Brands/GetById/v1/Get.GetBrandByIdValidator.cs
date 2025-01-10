@@ -2,7 +2,7 @@
 
 internal sealed class GetBrandByIdValidator : Validator<GetBrandByIdRequest>
 {
-    internal GetBrandByIdValidator()
+    public GetBrandByIdValidator()
     {
         RuleFor(x => x.Id)
             .NotNull().WithMessage("Brand id cannot null!").WithErrorCode("B001");
