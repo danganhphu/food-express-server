@@ -1,5 +1,6 @@
 using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 internal static class MigrateDbContextExtensions
 {

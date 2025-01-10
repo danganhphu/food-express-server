@@ -1,8 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using BuildingBlocks.Core.Domain;
-using BuildingBlocks.Core.Domain.Abstractions;
-
-namespace Services.Catalog.Domain.CategoriesAggregate;
+﻿namespace Services.Catalog.Domain.CategoriesAggregate;
 
 public sealed class Category : EntityBase<Category, CategoryId>, IAggregateRoot
 {

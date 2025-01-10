@@ -1,7 +1,3 @@
-using BuildingBlocks.Core.Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace Services.Catalog.Infrastructure.Data.Configuration;
 
 internal abstract class BaseConfiguration<TEntity, TId> : IEntityTypeConfiguration<TEntity>
@@ -11,8 +7,6 @@ internal abstract class BaseConfiguration<TEntity, TId> : IEntityTypeConfigurati
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
         builder.HasKey(e => e.Id);
-
-        builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
         builder.Property(e => e.Created).IsRequired();
 

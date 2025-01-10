@@ -11,6 +11,7 @@
   <ItemGroup>
     <!-- Version together with ASP.NET -->
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
+    <PackageVersion Include="Ardalis.Result" Version="10.1.0" />
     <PackageVersion Include="Ardalis.Result.AspNetCore" Version="10.1.0" />
     <PackageVersion Include="Ardalis.SmartEnum" Version="8.2.0" />
     <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
@@ -26,13 +27,18 @@
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.0.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.0.0" />
     <PackageVersion Include="EFCore.NamingConventions" Version="9.0.0" />
-    <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.5-beta" />
+    <PackageVersion Include="FastEndpoints" Version="5.33.0.6-beta" />
+    <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.6-beta" />
     <PackageVersion Include="MassTransit" Version="8.3.4" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.4" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspnetVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

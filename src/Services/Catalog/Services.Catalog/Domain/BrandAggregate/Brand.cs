@@ -1,8 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using BuildingBlocks.Core.Domain;
-using BuildingBlocks.Core.Domain.Abstractions;
-
-namespace Services.Catalog.Domain.BrandAggregate;
+﻿namespace Services.Catalog.Domain.BrandAggregate;
 
 public sealed class Brand : EntityBase<Brand, BrandId>, IAggregateRoot
 {
