@@ -11,7 +11,7 @@ public abstract class EntityBase<T, TId> : HasDomainEventsBase, IHaveVersion, IH
     where T : EntityBase<T, TId>
     where TId : notnull
 {
-    public TId Id { get; set; } = default!;
+    public TId Id { get; private set; } = default!;
 
     public Guid Version { get; set; }
 

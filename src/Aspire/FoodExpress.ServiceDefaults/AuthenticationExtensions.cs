@@ -36,9 +36,7 @@ public static class AuthenticationExtensions
                        // Prevent from mapping "sub" claim to nameidentifier.
                        options.MapInboundClaims = false;
                    });
-
-        builder.Services.AddAuthorization();
-
+        
         return builder;
     }
 }

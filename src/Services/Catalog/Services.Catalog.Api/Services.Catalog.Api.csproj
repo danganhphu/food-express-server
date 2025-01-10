@@ -2,6 +2,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+    <PackageReference Include="FastEndpoints"/>
+    <PackageReference Include="FastEndpoints.AspVersioning"/>
+    <PackageReference Include="MediatR"/>
+    <PackageReference Include="Ardalis.Result.AspNetCore"/>
   </ItemGroup>
 
 </Project>
