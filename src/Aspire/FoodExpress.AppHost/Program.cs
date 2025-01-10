@@ -2,13 +2,16 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddForwardedHeaders();
 
-var postgresUser = builder.AddParameter("SqlUser", true);
-var postgresPassword = builder.AddParameter("SqlPassword", true);
+var postgresUserName = builder.AddParameter("postgres-username", true);
+var postgresPassword = builder.AddParameter("postgres-password", true);
+
+var keycloakUserName = builder.AddParameter("keycloak-username", true);
+var keycloakPassword = builder.AddParameter("keycloak-password", true);
 
 var launchProfileName = builder.Configuration["DOTNET_LAUNCH_PROFILE"] ?? "http";
 
 // Keycloak resource
-var identityProvider = builder.AddKeycloak(ServiceName.IdentityProvider, 18080)
+var identityProvider = builder.AddKeycloak(ServiceName.IdentityProvider, 18080, keycloakUserName, keycloakPassword)
                               .WithExternalHttpEndpoints()
                               .WithDataVolume();
 
@@ -20,7 +23,7 @@ var redis = builder
             .WithLifetime(ContainerLifetime.Persistent);
 
 var postgres = builder
-               .AddPostgres(ServiceName.Postgres, postgresUser, postgresPassword, 5432)
+               .AddPostgres(ServiceName.Postgres, postgresUserName, postgresPassword, 15432)
                .WithDataVolume(isReadOnly: false)
                .WithLifetime(ContainerLifetime.Persistent);
 

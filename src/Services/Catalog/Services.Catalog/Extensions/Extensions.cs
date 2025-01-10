@@ -1,10 +1,14 @@
-﻿namespace Services.Catalog.Extensions;
+﻿using System;
 
-internal static class Extensions
+namespace Services.Catalog.Extensions;
+
+public static class Extensions
 {
-    internal static IHostApplicationBuilder AddApplicationServices(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder AddApplicationServices(this IHostApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
+
+        builder.CreateApiVersion();
 
         builder.AddDefaultAuthentication();
 
@@ -35,7 +39,7 @@ internal static class Extensions
         return builder;
     }
 
-    internal static IApplicationBuilder UseApplicationServices(this WebApplication app)
+    public static IApplicationBuilder UseApplicationServices(this WebApplication app)
     {
         ArgumentNullException.ThrowIfNull(app);
 

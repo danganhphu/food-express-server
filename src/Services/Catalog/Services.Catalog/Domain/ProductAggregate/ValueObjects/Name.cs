@@ -1,4 +1,6 @@
-﻿namespace Services.Catalog.Domain.ProductAggregate.ValueObjects;
+﻿using System.Collections.Generic;
+
+namespace Services.Catalog.Domain.ProductAggregate.ValueObjects;
 
 public sealed class Name : ValueObject
 {

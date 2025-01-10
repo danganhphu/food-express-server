@@ -1,7 +1,4 @@
-﻿using FastEndpoints;
-using FastEndpoints.AspVersioning;
-
-namespace Services.Catalog.Api.Endpoints.Brands;
+﻿namespace Services.Catalog.Api.Endpoints.Brands;
 
 public sealed class BrandGrouping : Group
 {

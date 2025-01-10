@@ -300,6 +300,7 @@
         }
       ],
       "ordering-openapi": [],
+      "catalog-openapi": [],
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],
@@ -529,7 +530,62 @@
         "address",
         "phone",
         "offline_access",
+        "catalogAll",
         "orderingAll",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "016c17d1-8e0f-4a67-9116-86b469p56e11",
+      "clientId": "catalog-openapi",
+      "name": "Catalog OpenAPI with Scalar",
+      "description": "",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "ze4SQDpbyBlB72kdTCTv8ecSWsJHf2hG",
+      "redirectUris": [
+        "http://localhost:5186/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5186"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "post.logout.redirect.uris": "+",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "catalogAll",
         "microprofile-jwt"
       ]
     },
@@ -976,6 +1032,7 @@
         "phone",
         "offline_access",
         "microprofile-jwt",
+        "catalogAll",
         "orderingAll"
       ]
     }
@@ -1022,6 +1079,35 @@
             "access.token.claim": "true",
             "claim.name": "phone_number_verified",
             "jsonType.label": "boolean"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c86c88f3-b25a-4069-8be8-72bd8dd0f06f",
+      "name": "catalogAll",
+      "description": "",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true",
+        "gui.order": "",
+        "consent.screen.text": ""
+      },
+      "protocolMappers": [
+        {
+          "id": "06d03e02-1e56-4bde-911d-bcf28aeba90f",
+          "name": "catalog api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "catalog-api, ",
+            "introspection.token.claim": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "lightweight.claim": "false",
+            "access.token.claim": "true"
           }
         }
       ]
@@ -1562,6 +1648,7 @@
     "address",
     "phone",
     "microprofile-jwt",
+    "catalogAll",
     "orderingAll"
   ],
   "browserSecurityHeaders": {

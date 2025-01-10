@@ -5,6 +5,7 @@ global using Ardalis.GuardClauses;
 global using BuildingBlocks.Constants;
 global using BuildingBlocks.Core.Domain;
 global using BuildingBlocks.Core.Domain.Abstractions;
+global using BuildingBlocks.Core.Queries;
 global using BuildingBlocks.SharedKernel.ActivityScope;
 global using BuildingBlocks.SharedKernel.ApiVersioning;
 global using BuildingBlocks.SharedKernel.Clock;

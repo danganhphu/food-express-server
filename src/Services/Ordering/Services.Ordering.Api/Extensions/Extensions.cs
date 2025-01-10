@@ -8,7 +8,7 @@ internal static class Extensions
     public static void AddApplicationServices(this IHostApplicationBuilder builder)
     {
         builder.AddDefaultAuthentication();
-
+        builder.Services.AddAuthorizationBuilder();
         builder.Services.AddHttpContextAccessor();
 
         builder.AddDateTimeProvider();

@@ -1,11 +1,8 @@
-﻿using FastEndpoints;
-using FluentValidation;
-
-namespace Services.Catalog.Api.Endpoints.Brands.GetById;
+﻿namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
 
 internal sealed class GetBrandByIdValidator : Validator<GetBrandByIdRequest>
 {
-    public GetBrandByIdValidator()
+    internal GetBrandByIdValidator()
     {
         RuleFor(x => x.Id)
             .NotNull().WithMessage("Brand id cannot null!").WithErrorCode("B001");

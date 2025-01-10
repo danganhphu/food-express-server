@@ -1,4 +1,5 @@
-﻿using Asp.Versioning.Conventions;
+﻿using System;
+using Asp.Versioning.Conventions;
 using FastEndpoints.AspVersioning;
 
 namespace Services.Catalog.Extensions;
