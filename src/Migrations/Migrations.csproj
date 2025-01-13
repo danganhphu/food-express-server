@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>FoodExpress.Migrations</AssemblyName>
+        <RootNamespace>FoodExpress.Migrations</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Services\Catalog\Services.Catalog\Services.Catalog.csproj" />
+    </ItemGroup>
+
+</Project>

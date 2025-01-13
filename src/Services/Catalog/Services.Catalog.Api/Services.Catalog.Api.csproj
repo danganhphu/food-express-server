@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.SharedKernel\BuildingBlocks.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\Migrations\Migrations.csproj" />
     <ProjectReference Include="..\Services.Catalog\Services.Catalog.csproj" />
   </ItemGroup>
 
