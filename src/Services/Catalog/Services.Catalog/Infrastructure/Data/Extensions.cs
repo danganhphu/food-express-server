@@ -19,7 +19,7 @@ internal static class Extensions
                     builder.Configuration.GetConnectionString(ServiceName.Catalog),
                     npgsqlOptionsAction: optionsAction =>
                     {
-                        optionsAction.MigrationsAssembly(typeof(ICatalogAssemblyMaker).Assembly.FullName);
+                        optionsAction.MigrationsAssembly("FoodExpress.Migrations");
                         optionsAction.EnableRetryOnFailure(15, TimeSpan.FromSeconds(30), null);
                     });
                 options.UseSnakeCaseNamingConvention();

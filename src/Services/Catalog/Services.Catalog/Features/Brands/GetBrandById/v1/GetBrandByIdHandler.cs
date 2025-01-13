@@ -15,7 +15,7 @@ internal sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IE
                                         .ConfigureAwait(false);
 
         return brand is null
-                   ? Result.NotFound($"Brand item with id {request.BrandId} not found")
-                   : Result.Success(brand.ToBrandDto());
+                   ? Result<BrandDto>.NotFound($"Brand item with id {request.BrandId} not found")
+                   : Result<BrandDto>.Success(brand.ToBrandDto());
     }
 }
