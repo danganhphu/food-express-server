@@ -19,16 +19,16 @@
     <PackageVersion Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageVersion Include="Ardalis.Specification" Version="8.0.0" />
-    <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.0.0-preview.5.24551.3" />
+    <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.1.0-preview.1.25060.4" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="9.0.0" />
-    <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.0.0-preview.5.24551.3" />
+    <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.1.0-preview.1.25060.4" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.0.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.0.0" />
     <PackageVersion Include="EFCore.NamingConventions" Version="9.0.0" />
-    <PackageVersion Include="FastEndpoints" Version="5.33.0.6-beta" />
-    <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.6-beta" />
+    <PackageVersion Include="FastEndpoints" Version="5.33.0.7-beta" />
+    <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.33.0.7-beta" />
     <PackageVersion Include="MassTransit" Version="8.3.4" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.4" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
@@ -50,12 +50,12 @@
     <!-- Open Telemetry -->
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.11.0-rc.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.10.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.10.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Process" Version="1.10.0-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryVersion)" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="1.2.74" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="1.2.75" />
     <PackageVersion Include="Serilog" Version="4.2.1-dev-02337" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
