@@ -10,6 +10,7 @@ internal static class ApiRoutes
     /// </summary>
     internal static class Brand
     {
+        internal const string Create = "/";
         internal const string List = "/";
         internal const string GetById = "/{id}";
     }

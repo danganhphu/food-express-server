@@ -1,4 +1,4 @@
-﻿using System;
+﻿using FastEndpoints;
 
 namespace Services.Catalog.Extensions;
 

@@ -1,13 +1,12 @@
-﻿using Ardalis.Result;
-using BuildingBlocks.Core.EFCore;
+﻿using BuildingBlocks.Core.EFCore;
 using Services.Catalog.Domain.BrandAggregate.Specifications;
 
-namespace Services.Catalog.Features.Brands.GetBrandById.v1;
+namespace Services.Catalog.Features.Brands.GetById.v1;
 
 internal sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfReadRepository<Brand> readRepository)
-    : IQueryHandler<GetBrandById, Result<BrandDto>>
+    : IQueryHandler<GetById.v1.GetBrandById, Result<BrandDto>>
 {
-    public async Task<Result<BrandDto>> Handle(GetBrandById request, CancellationToken cancellationToken)
+    public async Task<Result<BrandDto>> Handle(GetById.v1.GetBrandById request, CancellationToken cancellationToken)
     {
         var brandId = Guard.Against.NullOrEmpty(request.BrandId);
 

@@ -2,7 +2,9 @@
 
 global using System.Text.Json;
 global using Ardalis.GuardClauses;
+global using Ardalis.Result;
 global using BuildingBlocks.Constants;
+global using BuildingBlocks.Core.Commands;
 global using BuildingBlocks.Core.Domain;
 global using BuildingBlocks.Core.Domain.Abstractions;
 global using BuildingBlocks.Core.Queries;
@@ -12,7 +14,6 @@ global using BuildingBlocks.SharedKernel.Clock;
 global using BuildingBlocks.SharedKernel.Identity;
 global using BuildingBlocks.SharedKernel.Metrics;
 global using BuildingBlocks.SharedKernel.Pipelines;
-global using FastEndpoints;
 global using FoodExpress.ServiceDefaults;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.EntityFrameworkCore;
