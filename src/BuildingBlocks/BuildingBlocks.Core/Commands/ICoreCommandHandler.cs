@@ -4,14 +4,14 @@
 /// 
 /// </summary>
 /// <typeparam name="TCommand"></typeparam>
-public interface ICommandHandler<in TCommand> : ICommandHandler<TCommand, Unit>
-    where TCommand : ICommand<Unit>;
+public interface ICoreCommandHandler<in TCommand> : ICoreCommandHandler<TCommand, Unit>
+    where TCommand : ICoreCommand<Unit>;
 
 /// <summary>
 /// 
 /// </summary>
 /// <typeparam name="TCommand"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
-public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
-    where TCommand : ICommand<TResponse>
+public interface ICoreCommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
+    where TCommand : ICoreCommand<TResponse>
     where TResponse : notnull;

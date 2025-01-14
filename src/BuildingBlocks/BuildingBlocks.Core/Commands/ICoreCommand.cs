@@ -3,10 +3,10 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ICommand : ICommand<Unit>;
+public interface ICoreCommand : ICoreCommand<Unit>;
 
 /// <summary>
 /// 
 /// </summary>
 /// <typeparam name="TResponse"></typeparam>
-public interface ICommand<out TResponse> : IRequest<TResponse> where TResponse : notnull;
+public interface ICoreCommand<out TResponse> : IRequest<TResponse> where TResponse : notnull;
