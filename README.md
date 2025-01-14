@@ -2,7 +2,7 @@
 
 > 🌀This project is a work in progress, new features will be added over time.🌀
 
-I will try to register future goals and additions in the [Issues](https://github.com/danganhphu?tab=repositories/issues)
+I will try to register future goals and additions in the [Issues](https://github.com/danganhphu/issues)
 section of this repository.
 
 High-level plan is represented in the table
