@@ -1,6 +1,4 @@
-﻿using Ardalis.Specification;
-
-namespace Services.Catalog.Domain.BrandAggregate.Specifications;
+﻿namespace Services.Catalog.Domain.BrandAggregate.Specifications;
 
 internal sealed class BrandByIdSpec : Specification<Brand>
 {

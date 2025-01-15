@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Core.EFCore;
-
-namespace Services.Catalog.Features.Brands.Create.v1;
+﻿namespace Services.Catalog.Features.Brands.Create.v1;
 
 public sealed class CreateBrandHandler([FromKeyedServices("catalog")] IEfRepository<Brand> readRepository)
     : ICoreCommandHandler<CreateBrandCommand, Result<Guid>>

@@ -43,7 +43,9 @@ public static class Extensions
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        app.UseDefaultExceptionHandler(app.Logger, true, true)
+        app.UseAuthentication()
+           .UseAuthorization()
+           .UseDefaultExceptionHandler(app.Logger, true, true)
            .UseFastEndpoints(
                c =>
                {

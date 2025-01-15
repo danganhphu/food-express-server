@@ -1,5 +1,3 @@
-using Services.Catalog.Api;
-
 StaticLogger.EnsureInitialized();
 Log.Information("server booting up..");
 
@@ -10,11 +8,7 @@ try
     builder.AddServiceDefaults();
 
     builder.AddApplicationServices();
-    // builder.Services.AddMediatR(
-    //     cfg =>
-    //     {
-    //         cfg.RegisterServicesFromAssemblyContaining<ICatalogApiAssemblyMaker>();
-    //     });
+
     builder.AddDefaultOpenApi();
 
     var app = builder.Build();
