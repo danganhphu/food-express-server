@@ -16,6 +16,13 @@ public sealed class Create(ISender sender) : Endpoint<CreateBrandRequest, Create
 
         var result = await sender.Send(new CreateBrandCommand(request.Name), ct);
 
+        if (result.IsSuccess)
+        {
+            Response = new(result.Value);
+
+            return;
+        }
+
         await SendResultAsync(result.ToMinimalApiResult());
     }
 }

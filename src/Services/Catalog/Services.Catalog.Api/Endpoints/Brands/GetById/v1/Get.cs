@@ -17,17 +17,5 @@ public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest, GetB
         var result = await sender.Send(new GetBrandByIdQuery(request.Id), ct);
 
         await SendResultAsync(result.ToMinimalApiResult());
-
-        // if (result.Status == ResultStatus.NotFound)
-        // {
-        //     await SendNotFoundAsync(ct);
-        //
-        //     return;
-        // }
-        //
-        // if (result.IsSuccess)
-        // {
-        //     await SendAsync(result, cancellation: ct);
-        // }
     }
 }
