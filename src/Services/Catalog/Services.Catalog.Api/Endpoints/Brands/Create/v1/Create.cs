@@ -1,5 +1,5 @@
 ﻿using Ardalis.Result.AspNetCore;
-using Services.Catalog.Features.Brands.CreateBrand.v1;
+using Services.Catalog.Features.Brands.Create.v1;
 
 namespace Services.Catalog.Api.Endpoints.Brands.Create.v1;
 
@@ -18,6 +18,6 @@ public sealed class Create(ISender sender) : Endpoint<CreateBrandRequest, Create
     {
         var result = await sender.Send(new CreateBrandCommand(request.Name), ct);
 
-        await SendResultAsync(result.ToMinimalApiResult());
+        // await SendResultAsync(result.ToMinimalApiResult());
     }
 }

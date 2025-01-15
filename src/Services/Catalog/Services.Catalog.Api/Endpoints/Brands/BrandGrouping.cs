@@ -5,7 +5,7 @@ public sealed class BrandGrouping : Group
     public BrandGrouping()
     {
         Configure(
-            "{v:apiVersion}/brand",
+            "v{version:apiVersion}/brand",
             ep =>
             {
                 ep.Description(
