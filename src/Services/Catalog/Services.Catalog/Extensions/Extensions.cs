@@ -43,12 +43,11 @@ public static class Extensions
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        app.UseDefaultExceptionHandler()
+        app.UseDefaultExceptionHandler(app.Logger, true, true)
            .UseFastEndpoints(
                c =>
                {
                    c.Endpoints.RoutePrefix = "api";
-                   c.Versioning.Prefix = "v";
                    c.Serializer.Options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                    c.Errors.UseProblemDetails();
                });

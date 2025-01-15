@@ -3,10 +3,10 @@ using Services.Catalog.Domain.BrandAggregate.Specifications;
 
 namespace Services.Catalog.Features.Brands.GetById.v1;
 
-internal sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfReadRepository<Brand> readRepository)
-    : IQueryHandler<GetById.v1.GetBrandById, Result<BrandDto>>
+public sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfReadRepository<Brand> readRepository)
+    : ICoreQueryHandler<GetBrandByIdQuery, Result<BrandDto>>
 {
-    public async Task<Result<BrandDto>> Handle(GetById.v1.GetBrandById request, CancellationToken cancellationToken)
+    public async Task<Result<BrandDto>> Handle(GetBrandByIdQuery request, CancellationToken cancellationToken)
     {
         var brandId = Guard.Against.NullOrEmpty(request.BrandId);
 
@@ -15,6 +15,6 @@ internal sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IE
 
         return brand is null
                    ? Result<BrandDto>.NotFound($"Brand item with id {request.BrandId} not found")
-                   : Result<BrandDto>.Success(brand.ToBrandDto());
+                   : brand.ToBrandDto();
     }
 }

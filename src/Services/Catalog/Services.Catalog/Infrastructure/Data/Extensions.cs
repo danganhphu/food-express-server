@@ -1,4 +1,5 @@
 using BuildingBlocks.Core.EFCore;
+using BuildingBlocks.SharedKernel.EFCore.Interceptors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
@@ -8,6 +9,11 @@ internal static class Extensions
 {
     public static IHostApplicationBuilder AddPersistence(this IHostApplicationBuilder builder)
     {
+        builder.Services.AddScoped<ISaveChangesInterceptor, AuditableInterceptor>();
+        builder.Services.AddScoped<ISaveChangesInterceptor, ConcurrencyInterceptor>();
+        builder.Services.AddScoped<ISaveChangesInterceptor, DeletableInterceptor>();
+        builder.Services.AddScoped<ISaveChangesInterceptor, PublishDomainEventsInterceptor>();
+
         //ref: https://github.com/dotnet/aspire/discussions/6967
         //ref: https://github.com/dotnet/docs-aspire/issues/1601#issuecomment-2333380717
 

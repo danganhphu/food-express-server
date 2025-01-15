@@ -4,7 +4,7 @@ using Services.Catalog.Features.Brands.GetById.v1;
 
 namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
 
-public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest>
+public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest, GetBrandByIdResponse>
 {
     public override void Configure()
     {
@@ -17,19 +17,22 @@ public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest>
     public override async Task HandleAsync(GetBrandByIdRequest request,
                                            CancellationToken ct)
     {
-        var result = await sender.Send(new GetBrandById(request.Id), ct);
+        ArgumentNullException.ThrowIfNull(request);
+        
+        var result = await sender.Send(new GetBrandByIdQuery(request.Id), ct);
 
-        // stuff: https://github.com/ardalis/Result/issues/225
-        if (result.Status == ResultStatus.NotFound)
-        {
-            await SendNotFoundAsync(ct);
+        await SendResultAsync(result.ToMinimalApiResult());
 
-            return;
-        }
-
-        if (result.IsSuccess)
-        {
-            await SendAsync(result, cancellation: ct);
-        }
+        // if (result.Status == ResultStatus.NotFound)
+        // {
+        //     await SendNotFoundAsync(ct);
+        //
+        //     return;
+        // }
+        //
+        // if (result.IsSuccess)
+        // {
+        //     await SendAsync(result, cancellation: ct);
+        // }
     }
 }
