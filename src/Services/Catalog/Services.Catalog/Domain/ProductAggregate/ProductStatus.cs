@@ -1,6 +1,4 @@
-﻿using Ardalis.SmartEnum;
-
-namespace Services.Catalog.Domain.ProductAggregate;
+﻿namespace Services.Catalog.Domain.ProductAggregate;
 
 public sealed class ProductStatus : SmartEnum<ProductStatus>
 {

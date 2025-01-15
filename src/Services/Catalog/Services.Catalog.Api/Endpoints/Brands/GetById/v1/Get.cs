@@ -1,15 +1,10 @@
-﻿using Ardalis.Result;
-using Ardalis.Result.AspNetCore;
-using Services.Catalog.Features.Brands.GetById.v1;
-
-namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
+﻿namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
 
 public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest, GetBrandByIdResponse>
 {
     public override void Configure()
     {
         Get(ApiRoutes.Brand.GetById);
-        AllowAnonymous();
 
         Group<BrandGrouping>();
     }

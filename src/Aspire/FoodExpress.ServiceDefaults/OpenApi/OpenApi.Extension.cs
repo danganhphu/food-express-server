@@ -68,8 +68,10 @@ public static class OpenApiExtension
             return app;
         }
 
-        app.MapScalarApiReference();
-        app.MapGet("/", () => Results.Redirect("/scalar/v1")).ExcludeFromDescription();
+        app.MapScalarApiReference(
+            options => options.WithEndpointPrefix("/openapi/food-express/catalog/{documentName}"));
+
+        app.MapGet("/", () => Results.Redirect("/openapi/food-express/catalog/v1")).ExcludeFromDescription();
 
         return app;
     }

@@ -1,4 +1,3 @@
-using BuildingBlocks.Core.EFCore;
 using BuildingBlocks.SharedKernel.EFCore.Interceptors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;

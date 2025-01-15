@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.Core.EFCore;
-using Services.Catalog.Domain.BrandAggregate.Specifications;
+﻿using Services.Catalog.Domain.BrandAggregate.Specifications;
 
 namespace Services.Catalog.Features.Brands.GetById.v1;
 
