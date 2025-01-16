@@ -40,8 +40,10 @@ var identityEndpoint = identityProvider.GetEndpoint(launchProfileName);
 var catalogApi = builder.AddProject<Services_Catalog_Api>(ResourceNameApi.Catalog)
                         .WithReference(identityProvider)
                         .WithReference(catalogDb)
+                        .WithReference(redis)
                         .WaitFor(identityProvider)
                         .WaitFor(catalogDb)
+                        .WaitFor(redis)
                         .WithEnvironment(EnvironmentNameService.Identity, identityEndpoint);
 
 // ordering service api

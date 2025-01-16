@@ -1,4 +1,6 @@
-﻿using FastEndpoints;
+﻿using BuildingBlocks.SharedKernel.Caching;
+using FastEndpoints;
+using Services.Catalog.Infrastructure.Caching;
 
 namespace Services.Catalog.Extensions;
 
@@ -36,6 +38,8 @@ public static class Extensions
         builder.Services.AddSingleton<CommandHandlerMetrics>();
         builder.Services.AddSingleton<QueryHandlerMetrics>();
 
+        builder.AddConfigureHybridCache();
+        
         return builder;
     }
 
