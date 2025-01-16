@@ -2,5 +2,5 @@
 
 public sealed class BrandListResponse
 {
-    public List<BrandResponse> Brands { get; set; } = [];
+    public IReadOnlyCollection<BrandResponse> Brands { get; set; } = [];
 }
