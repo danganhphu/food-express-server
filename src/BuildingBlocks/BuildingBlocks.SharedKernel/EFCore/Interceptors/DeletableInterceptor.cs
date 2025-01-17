@@ -27,6 +27,11 @@ public sealed class DeletableInterceptor(IIdentityService currentUser, IDateTime
         foreach (var entry in context.ChangeTracker.Entries<IHaveDelete>().AsEnumerable()
                                      .Where(entry => entry.State == EntityState.Deleted))
         {
+            if (entry.Entity is not ISoftDelete softDeleteEntity)
+                continue;
+
+            softDeleteEntity.Delete();
+
             Extensions.SetPropertyValue(entry, nameof(IHaveDelete.Deleted), utcNow);
             Extensions.SetPropertyValue(entry, nameof(IHaveDelete.DeletedBy), userId);
 
