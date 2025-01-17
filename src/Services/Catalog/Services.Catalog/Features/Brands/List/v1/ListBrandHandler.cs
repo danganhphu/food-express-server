@@ -11,19 +11,10 @@ public sealed class ListBrandHandler([FromKeyedServices("catalog:read")] IEfRead
     {
         Guard.Against.Null(query);
 
-        var cachedBrands = await cache.GetOrCreateAsync(
-                               "brands-list",
-                               async token =>
-                               {
-                                   var brands = await readRepository.ListAsync(token);
+        var brands = await readRepository.ListAsync(cancellationToken);
 
-                                   return brands;
-                               },
-                               tags: ["brands"],
-                               cancellationToken: cancellationToken);
-
-        return cachedBrands.Count == 0
+        return brands.Count == 0
                    ? Result.NotFound("No brands found.")
-                   : Result.Success(cachedBrands.ToBrandDtos());
+                   : Result.Success(brands.ToBrandDtos());
     }
 }

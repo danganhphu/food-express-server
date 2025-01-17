@@ -1,6 +1,6 @@
 ﻿namespace Services.Catalog.Domain.BrandAggregate.Specifications;
 
-internal sealed class BrandByIdSpec : Specification<Brand>
+internal sealed class BrandByIdSpec : SingleResultSpecification<Brand>
 {
     public BrandByIdSpec(Guid brandId)
     {

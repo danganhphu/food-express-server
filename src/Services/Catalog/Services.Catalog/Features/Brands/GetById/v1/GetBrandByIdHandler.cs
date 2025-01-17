@@ -11,20 +11,10 @@ public sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfR
     {
         var brandId = Guard.Against.NullOrEmpty(query.BrandId);
 
-        var cacheBrand = await cache.GetOrCreateAsync(
-                             $"brands-{brandId}",
-                             async token =>
-                             {
-                                 var brand =
-                                     await readRepository.FirstOrDefaultAsync(new BrandByIdSpec(brandId), token);
+        var brand = await readRepository.FirstOrDefaultAsync(new BrandByIdSpec(brandId), cancellationToken);
 
-                                 return brand;
-                             },
-                             tags: ["brands"],
-                             cancellationToken: cancellationToken);
-
-        return cacheBrand is null
+        return brand is null
                    ? Result.NotFound($"Brand item with id {query.BrandId} not found")
-                   : cacheBrand.ToBrandDto();
+                   : brand.ToBrandDto();
     }
 }

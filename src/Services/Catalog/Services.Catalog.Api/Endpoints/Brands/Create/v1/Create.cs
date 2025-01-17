@@ -12,8 +12,6 @@ public sealed class Create(ISender sender) : Endpoint<CreateBrandRequest, Create
     public override async Task HandleAsync(CreateBrandRequest request,
                                            CancellationToken ct)
     {
-        ArgumentNullException.ThrowIfNull(request);
-
         var result = await sender.Send(new CreateBrandCommand(request.Name), ct);
 
         if (result.IsSuccess)

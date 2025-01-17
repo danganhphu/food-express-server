@@ -13,5 +13,6 @@ internal static class ApiRoutes
         internal const string Create = "/";
         internal const string List = "/";
         internal const string GetById = "/{id}";
+        internal const string Delete = "/{id}";
     }
 }

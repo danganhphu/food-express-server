@@ -1,4 +1,6 @@
-﻿namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
+﻿using Ardalis.GuardClauses;
+
+namespace Services.Catalog.Api.Endpoints.Brands.GetById.v1;
 
 public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest, BrandResponse>
 {
@@ -12,17 +14,18 @@ public sealed class GetById(ISender sender) : Endpoint<GetBrandByIdRequest, Bran
     public override async Task HandleAsync(GetBrandByIdRequest request,
                                            CancellationToken ct)
     {
-        ArgumentNullException.ThrowIfNull(request);
-
         var result = await sender.Send(new GetBrandByIdQuery(request.Id), ct);
 
-        if (result.IsSuccess)
+        if (result.Status == ResultStatus.NotFound)
         {
-            Response = new(result.Value.BrandId.Value, result.Value.Name);
+            await SendNotFoundAsync(ct);
 
             return;
         }
 
-        await SendResultAsync(result.ToMinimalApiResult());
+        if (result.IsSuccess)
+        {
+            Response = new(result.Value.BrandId.Value, result.Value.Name);
+        }
     }
 }
