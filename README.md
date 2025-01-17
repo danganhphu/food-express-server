@@ -29,11 +29,5 @@ The application is in development status. You are feel free to submit pull reque
 
 ## Star History
 
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="
-      https://api.star-history.com/svg?repos=danganhphu/food-express-server&type=Date&theme=dark
-    "
-  />
-</picture>
+[![Star History Chart](https://api.star-history.com/svg?repos=danganhphu/food-express-server&type=Date)](https://star-history.com/#danganhphu/food-express-server&Date)
+
