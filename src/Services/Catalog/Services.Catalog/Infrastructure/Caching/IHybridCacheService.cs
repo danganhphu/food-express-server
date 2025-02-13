@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.SharedKernel.Caching;
+﻿namespace Services.Catalog.Infrastructure.Caching;
 
 public interface IHybridCacheService
 {

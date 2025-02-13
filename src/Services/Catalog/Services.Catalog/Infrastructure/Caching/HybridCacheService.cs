@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Hybrid;
 
-namespace BuildingBlocks.SharedKernel.Caching;
+namespace Services.Catalog.Infrastructure.Caching;
 
 public sealed class HybridCacheService(HybridCache cache) : IHybridCacheService
 {
