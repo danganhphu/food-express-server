@@ -1,5 +1,4 @@
-﻿using BuildingBlocks.SharedKernel.Caching;
-using FastEndpoints;
+﻿using FastEndpoints;
 using Services.Catalog.Infrastructure.Caching;
 
 namespace Services.Catalog.Extensions;
