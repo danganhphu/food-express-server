@@ -1125,7 +1125,7 @@
       },
       "protocolMappers": [
         {
-          "id": "06d03e02-1e56-4bde-911d-bcf28aeba90f",
+          "id": "019502ad-b189-781c-b7dd-f2e3433c9858",
           "name": "ordering api audience",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-audience-mapper",

@@ -1,7 +1,4 @@
-﻿using Services.Catalog.Domain.ProductAggregate;
-using Services.Catalog.Domain.ProductAggregate.ValueObjects;
-
-namespace Services.Catalog.Infrastructure.Data.Configuration;
+﻿namespace Services.Catalog.Infrastructure.Data.Configuration;
 
 internal sealed class ProductConfiguration : BaseConfiguration<Product, ProductId>
 {

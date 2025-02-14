@@ -9,4 +9,8 @@
       <ProjectReference Include="..\Services\Catalog\Services.Catalog\Services.Catalog.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Catalog\" />
+    </ItemGroup>
+
 </Project>

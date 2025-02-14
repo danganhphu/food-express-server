@@ -1,5 +1,4 @@
-﻿using FastEndpoints;
-using Services.Catalog.Infrastructure.Caching;
+﻿using Services.Catalog.Infrastructure.Caching;
 
 namespace Services.Catalog.Extensions;
 

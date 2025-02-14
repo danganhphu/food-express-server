@@ -1,6 +1,4 @@
-﻿using Services.Catalog.Domain.BrandAggregate.Specifications;
-
-namespace Services.Catalog.Features.Brands.Delete.v1;
+﻿namespace Services.Catalog.Features.Brands.Delete.v1;
 
 public sealed class DeleteBrandHandler([FromKeyedServices("catalog")] IEfRepository<Brand> repository)
     : ICoreCommandHandler<DeleteBrandCommand, Result>
