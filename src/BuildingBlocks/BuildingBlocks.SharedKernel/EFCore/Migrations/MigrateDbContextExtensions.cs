@@ -1,8 +1,9 @@
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Iass.SharedKernel.EFCore.Migrations;
+using Microsoft.Extensions.Logging;
 
-internal static class MigrateDbContextExtensions
+namespace BuildingBlocks.SharedKernel.EFCore.Migrations;
+
+public static class MigrateDbContextExtensions
 {
     private const string ActivitySourceName = "DbMigrations";
     private static readonly ActivitySource _activitySource = new(ActivitySourceName);
@@ -13,10 +14,8 @@ internal static class MigrateDbContextExtensions
         return services.AddMigration<TContext>((_, _) => Task.CompletedTask);
     }
 
-    public static IServiceCollection AddMigration<TContext>(
-        this IServiceCollection services,
-        Func<TContext, IServiceProvider, Task> seeder
-    )
+    public static IServiceCollection AddMigration<TContext>(this IServiceCollection services,
+                                                            Func<TContext, IServiceProvider, Task> seeder)
         where TContext : DbContext
     {
         services.AddOpenTelemetry().WithTracing(tracing => tracing.AddSource(ActivitySourceName));
@@ -24,22 +23,18 @@ internal static class MigrateDbContextExtensions
         return services.AddHostedService(sp => new MigrationHostedService<TContext>(sp, seeder));
     }
 
-    public static IServiceCollection AddMigration<TContext, TDbSeeder>(
-        this IServiceCollection services
-    )
+    public static IServiceCollection AddMigration<TContext, TDbSeeder>(this IServiceCollection services)
         where TContext : DbContext
         where TDbSeeder : class, IDbSeeder<TContext>
     {
         services.AddScoped<IDbSeeder<TContext>, TDbSeeder>();
+
         return services.AddMigration<TContext>(
-            (context, sp) => sp.GetRequiredService<IDbSeeder<TContext>>().SeedAsync(context)
-        );
+            (context, sp) => sp.GetRequiredService<IDbSeeder<TContext>>().SeedAsync(context));
     }
 
-    private static async Task MigrateDbContextAsync<TContext>(
-        this IServiceProvider services,
-        Func<TContext, IServiceProvider, Task> seeder
-    )
+    private static async Task MigrateDbContextAsync<TContext>(this IServiceProvider services,
+                                                              Func<TContext, IServiceProvider, Task> seeder)
         where TContext : DbContext
     {
         using var scope = services.CreateScope();
@@ -47,16 +42,13 @@ internal static class MigrateDbContextExtensions
         var logger = scopeServices.GetRequiredService<ILogger<TContext>>();
         var context = scopeServices.GetService<TContext>();
 
-        using var activity = _activitySource.StartActivity(
-            $"Migration operation {typeof(TContext).Name}"
-        );
+        using var activity = _activitySource.StartActivity($"Migration operation {typeof(TContext).Name}");
 
         try
         {
             logger.LogInformation(
                 "Migrating database associated with context {DbContextName}",
-                typeof(TContext).Name
-            );
+                typeof(TContext).Name);
 
             var strategy = context?.Database.CreateExecutionStrategy();
 
@@ -70,8 +62,7 @@ internal static class MigrateDbContextExtensions
             logger.LogError(
                 ex,
                 "An error occurred while migrating the database used on context {DbContextName}",
-                typeof(TContext).Name
-            );
+                typeof(TContext).Name);
 
             activity.SetExceptionTags(ex);
 
@@ -79,11 +70,9 @@ internal static class MigrateDbContextExtensions
         }
     }
 
-    private static async Task InvokeSeeder<TContext>(
-        Func<TContext, IServiceProvider, Task> seeder,
-        TContext context,
-        IServiceProvider services
-    )
+    private static async Task InvokeSeeder<TContext>(Func<TContext, IServiceProvider, Task> seeder,
+                                                     TContext context,
+                                                     IServiceProvider services)
         where TContext : DbContext?
     {
         using var activity = _activitySource.StartActivity($"Migrating {typeof(TContext).Name}");
@@ -101,18 +90,23 @@ internal static class MigrateDbContextExtensions
         }
     }
 
-    private class MigrationHostedService<TContext>(
-        IServiceProvider serviceProvider,
-        Func<TContext, IServiceProvider, Task> seeder
-    ) : BackgroundService
+    /// <summary>
+    /// ref: // Here we use `IHostedService` instead of `BackgroundService` because:
+    /// we want to have control for running async task in StartAsync method and wait for completion not running it in background like `BackgroundService` in its StartAsync
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="seeder"></param>
+    /// <typeparam name="TContext"></typeparam>
+    private class MigrationHostedService<TContext>(IServiceProvider serviceProvider,
+                                                   Func<TContext, IServiceProvider, Task> seeder) : IHostedService
         where TContext : DbContext
     {
-        public override Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            return serviceProvider.MigrateDbContextAsync(seeder);
+            await serviceProvider.MigrateDbContextAsync(seeder);
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
         }

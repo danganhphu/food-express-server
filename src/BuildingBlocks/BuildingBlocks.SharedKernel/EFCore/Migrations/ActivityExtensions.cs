@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿namespace Iass.SharedKernel.EFCore.Migrations;
 
 internal static class ActivityExtensions
 {
