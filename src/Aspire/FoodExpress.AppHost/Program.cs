@@ -12,6 +12,7 @@ var launchProfileName = builder.Configuration["DOTNET_LAUNCH_PROFILE"] ?? "http"
 
 // Keycloak resource
 var identityProvider = builder.AddKeycloak(ServiceName.IdentityProvider, 18080, keycloakUserName, keycloakPassword)
+                              .WithImageTag("26.1.2")
                               .WithExternalHttpEndpoints()
                               .WithDataVolume();
 
@@ -24,6 +25,7 @@ var redis = builder
 
 var postgres = builder
                .AddPostgres(ServiceName.Postgres, postgresUserName, postgresPassword, 15432)
+               .WithImageTag("17.2")
                .WithDataVolume(isReadOnly: false)
                .WithLifetime(ContainerLifetime.Persistent);
 

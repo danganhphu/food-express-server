@@ -1,6 +1,4 @@
-﻿using Services.Catalog.Domain.ProductAggregate.ValueObjects;
-
-namespace Services.Catalog.Domain.ProductAggregate;
+﻿namespace Services.Catalog.Domain.ProductAggregate;
 
 public sealed class Product : EntityBase<Product, ProductId>, IAggregateRoot
 {

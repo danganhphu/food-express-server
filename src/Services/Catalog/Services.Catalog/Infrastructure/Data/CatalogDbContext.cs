@@ -1,9 +1,7 @@
-﻿using Services.Catalog.Domain.ProductAggregate;
-
-namespace Services.Catalog.Infrastructure.Data;
+﻿namespace Services.Catalog.Infrastructure.Data;
 
 public sealed class CatalogDbContext(DbContextOptions<CatalogDbContext> options)
-    : DbContext(options)
+    : DbContext(options), IDatabaseFacade
 
 {
     public DbSet<Brand> Brands => Set<Brand>();

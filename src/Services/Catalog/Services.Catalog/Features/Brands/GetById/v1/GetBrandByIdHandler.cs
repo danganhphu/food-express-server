@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Caching.Hybrid;
-using Services.Catalog.Domain.BrandAggregate.Specifications;
 
 namespace Services.Catalog.Features.Brands.GetById.v1;
 
