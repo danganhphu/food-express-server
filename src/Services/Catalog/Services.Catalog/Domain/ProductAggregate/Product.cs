@@ -1,4 +1,6 @@
-﻿namespace Services.Catalog.Domain.ProductAggregate;
+﻿using Services.Catalog.Domain.ProductAggregate.Events;
+
+namespace Services.Catalog.Domain.ProductAggregate;
 
 public sealed class Product : EntityBase<Product, ProductId>, IAggregateRoot
 {
@@ -21,6 +23,21 @@ public sealed class Product : EntityBase<Product, ProductId>, IAggregateRoot
         CategoryId = categoryId;
         BrandId = brandId;
         SupplierId = supplierId;
+    }
+
+    public static Product Create(string? name,
+                                 string? size,
+                                 decimal price,
+                                 decimal priceSale,
+                                 CategoryId categoryId,
+                                 BrandId brandId,
+                                 SupplierId supplierId)
+    {
+        var product = new Product(name, size, price, priceSale, categoryId, brandId, supplierId);
+
+        product.RegisterDomainEvent(new ProductCreatedEvent(product));
+
+        return product;
     }
 
     public ProductStatus Status { get; private set; } = ProductStatus.Available;

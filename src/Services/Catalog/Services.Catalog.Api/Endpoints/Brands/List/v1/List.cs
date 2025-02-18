@@ -13,7 +13,7 @@ public sealed class List(ISender sender) : EndpointWithoutRequest<BrandListRespo
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var result = await sender.Send(new ListBrandQuery(), ct);
+        var result = await sender.Send(new ListBrandsQuery(), ct);
 
         if (result.IsSuccess)
         {
