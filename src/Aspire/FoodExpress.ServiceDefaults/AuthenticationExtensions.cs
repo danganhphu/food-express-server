@@ -2,31 +2,18 @@
 
 public static class AuthenticationExtensions
 {
-    public static IHostApplicationBuilder AddDefaultAuthentication(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder AddDefaultAuthentication(this IHostApplicationBuilder builder,
+                                                                   string realm = "foodexpress")
     {
         ArgumentNullException.ThrowIfNull(builder);
-
-        var configuration = builder.Configuration;
-        var identity = configuration.GetSection(nameof(Identity)).Get<Identity>();
-
-        if (identity is null)
-        {
-            return builder;
-        }
-
-    #pragma warning disable S125
-
-        // JsonWebTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
-    #pragma warning restore S125
-
         builder.Services.AddAuthentication()
                .AddKeycloakJwtBearer(
                    ServiceName.IdentityProvider,
-                   realm: nameof(FoodExpress),
+                   realm: realm,
                    options =>
                    {
                        options.RequireHttpsMetadata = false;
-                       options.Audience = identity.Audience;
+                       options.Audience = "account";
 
                        options.TokenValidationParameters.ValidIssuers = [options.Authority];
                    #pragma warning disable CA5404
@@ -37,6 +24,18 @@ public static class AuthenticationExtensions
                        options.MapInboundClaims = false;
                    });
         
+        builder.Services.AddAuthorizationBuilder()
+               .AddPolicy(
+                   Authorization.Policies.Admin,
+                   policy => policy.RequireRole(Authorization.Roles.Admin)
+               )
+               .AddPolicy(Authorization.Policies.User, policy => policy.RequireAuthenticatedUser())
+               .SetDefaultPolicy(
+                   new AuthorizationPolicyBuilder(Authorization.Policies.User)
+                       .RequireAuthenticatedUser()
+                       .Build()
+               );
+
         return builder;
     }
 }

@@ -1,6 +1,6 @@
 ﻿{
   "id": "86683c73-be28-4380-a014-6316c0404192",
-  "realm": "FoodExpress",
+  "realm": "foodexpress",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -648,13 +648,13 @@
       "clientId": "account",
       "name": "${client_account}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/FoodExpress/account/",
+      "baseUrl": "/realms/foodexpress/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/FoodExpress/account/*"
+        "/realms/foodexpress/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -692,13 +692,13 @@
       "clientId": "account-console",
       "name": "${client_account-console}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/FoodExpress/account/",
+      "baseUrl": "/realms/foodexpress/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/FoodExpress/account/*"
+        "/realms/foodexpress/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -867,13 +867,13 @@
       "clientId": "security-admin-console",
       "name": "${client_security-admin-console}",
       "rootUrl": "${authAdminUrl}",
-      "baseUrl": "/admin/FoodExpress/console/",
+      "baseUrl": "/admin/foodexpress/console/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/admin/FoodExpress/console/*"
+        "/admin/foodexpress/console/*"
       ],
       "webOrigins": [
         "+"
