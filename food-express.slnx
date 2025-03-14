@@ -1,0 +1,38 @@
+﻿<Solution>
+  <Folder Name="/solution items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="nuget.config" />
+    <File Path="global.json" />
+    <File Path=".editorconfig" />
+    <File Path="stylecop.json" />
+    <File Path="README.md" />
+    <File Path=".justfile" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/ApiGateway/">
+    <Project Path="src\ApiGateway\FoodExpress.ApiGateway\FoodExpress.ApiGateway.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Aspire/">
+    <Project Path="src\Aspire\FoodExpress.AppHost\FoodExpress.AppHost.csproj" Type="Classic C#" />
+    <Project Path="src\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Migrations/">
+    <Project Path="src\Migrations\Migrations.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Catalog/">
+    <Project Path="src\Services\Catalog\Services.Catalog.Api\Services.Catalog.Api.csproj" Type="Classic C#" />
+    <Project Path="src\Services\Catalog\Services.Catalog\Services.Catalog.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Services/Ordering/">
+    <Project Path="src\Services\Ordering\Services.Ordering.Api\Services.Ordering.Api.csproj" Type="Classic C#" />
+    <Project Path="src\Services\Ordering\Services.Ordering\Services.Ordering.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/_BuildingBlocks/">
+    <Project Path="src\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" Type="Classic C#" />
+    <Project Path="src\BuildingBlocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" Type="Classic C#" />
+    <Project Path="src\BuildingBlocks\BuildingBlocks.SharedKernel\BuildingBlocks.SharedKernel.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>
