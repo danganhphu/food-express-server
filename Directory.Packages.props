@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Version together with ASP.NET -->
+    <PackageVersion Include="APIWeaver.OpenApi" Version="2.7.0" />
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
     <PackageVersion Include="Ardalis.Result" Version="10.1.0" />
     <PackageVersion Include="Ardalis.Result.AspNetCore" Version="10.1.0" />
@@ -53,6 +54,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.11.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Process" Version="1.11.0-beta.2" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.11.1" />
+    <PackageVersion Include="Saunter" Version="0.13.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.0.30" />
     <PackageVersion Include="Serilog" Version="4.2.1-dev-02340" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />

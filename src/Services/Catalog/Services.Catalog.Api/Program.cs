@@ -9,15 +9,11 @@ try
 
     builder.AddApplicationServices();
 
-    builder.AddDefaultOpenApi();
-
     var app = builder.Build();
 
     app.MapDefaultEndpoints();
 
     app.UseApplicationServices();
-
-    app.UseDefaultOpenApi();
 
     await app.RunAsync();
 }

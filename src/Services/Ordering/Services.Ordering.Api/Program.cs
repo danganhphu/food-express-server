@@ -7,9 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.AddApplicationServices();
-
-builder.AddDefaultOpenApi();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,8 +35,6 @@ app.MapGet(
    .RequireAuthorization();
 
 app.UseApplicationServices();
-app.UseDefaultOpenApi();
-
 await app.RunAsync();
 
 public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
