@@ -77,7 +77,9 @@ public static class ScalarExtensions
             builder.Services.AddHttpForwarder();
             builder.Logging.ClearProviders();
             builder.Logging.AddProvider(
+            #pragma warning disable CA2000
                 new ResourceLoggerProvider(resourceLoggerService.GetLogger(scalarResource.Name))
+            #pragma warning restore CA2000
             );
 
             var app = builder.Build();

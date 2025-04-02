@@ -1,8 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
-using System.Text.Json.Nodes;
-
-namespace FoodExpress.ServiceDefaults;
+﻿namespace FoodExpress.ServiceDefaults;
 
 public static class ClaimsPrincipalExtensions
 {

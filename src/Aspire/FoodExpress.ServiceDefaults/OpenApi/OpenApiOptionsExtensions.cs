@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
-namespace FoodExpress.ServiceDefaults.OpenApi;
+﻿namespace FoodExpress.ServiceDefaults.OpenApi;
 
 internal static class OpenApiOptionsExtensions
 {

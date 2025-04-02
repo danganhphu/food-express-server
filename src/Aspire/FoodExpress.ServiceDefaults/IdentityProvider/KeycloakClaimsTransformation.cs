@@ -1,8 +1,4 @@
-﻿using System.Security.Claims;
-using System.Text.Json.Nodes;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 
 namespace FoodExpress.ServiceDefaults.IdentityProvider;
 

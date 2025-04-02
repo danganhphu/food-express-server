@@ -7,4 +7,6 @@ public static partial class ServiceName
     public const string Catalog = "catalogdb";
 
     public const string Ordering = "orderingdb";
+
+    public const string Rating = "ratingdb";
 }

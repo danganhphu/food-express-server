@@ -15,17 +15,25 @@
     <PackageVersion Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.1.0" />
     <PackageVersion Include="Ardalis.Specification" Version="9.0.1" />
+    <PackageVersion Include="Aspire.Hosting.Azure.CosmosDB" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.SignalR" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Storage" Version="9.1.0" />
     <PackageVersion Include="Aspire.Hosting.Keycloak" Version="9.1.0-preview.1.25121.10" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.Qdrant" Version="9.1.0" />
+    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="9.1.0" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="9.1.0" />
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.1.0-preview.1.25121.10" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.1.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.1.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="EFCore.NamingConventions" Version="9.0.0" />
     <PackageVersion Include="FastEndpoints" Version="5.35.0" />
     <PackageVersion Include="FastEndpoints.AspVersioning" Version="5.35.0" />
+    <PackageVersion Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.70.0" />
+    <PackageVersion Include="Grpc.HealthCheck" Version="2.70.0" />
     <PackageVersion Include="MassTransit" Version="8.4.0" />
     <PackageVersion Include="MassTransit.RabbitMQ" Version="8.4.0" />
     <PackageVersion Include="MediatR" Version="12.5.0" />
@@ -46,6 +54,11 @@
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.3.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.1.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.1.0" />
+    <PackageVersion Include="Microsoft.Extensions.Telemetry.Abstractions" Version="9.3.0" />
+    <!-- Community Toolkit -->
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="9.3.0" />
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.MailPit" Version="9.3.0" />
+    <PackageVersion Include="CommunityToolkit.Aspire.OllamaSharp" Version="9.3.0-preview.1.250319-0516" />
     <!-- Open Telemetry -->
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.2" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.11.2" />

@@ -1,4 +1,5 @@
-﻿using Services.Catalog.Infrastructure.Caching;
+﻿using FoodExpress.ServiceDefaults.IdentityProvider;
+using Services.Catalog.Infrastructure.Caching;
 
 namespace Services.Catalog.Extensions;
 
@@ -10,9 +11,8 @@ public static class Extensions
 
         builder.CreateApiVersion();
 
-        builder.AddDefaultAuthentication();
+        builder.AddDefaultAuthentication().AddKeycloakClaimsTransformation();
 
-        builder.Services.AddAuthorizationBuilder();
 
         builder.Services.AddHttpContextAccessor();
 

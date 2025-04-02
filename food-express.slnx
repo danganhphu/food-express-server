@@ -19,6 +19,7 @@
     <Project Path="src\Aspire\FoodExpress.ServiceDefaults\FoodExpress.ServiceDefaults.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/src/Integrations/">
+    <Project Path="src\Integrations\FoodExpress.HealthChecksUI\FoodExpress.HealthChecksUI.csproj" Type="Classic C#" />
     <Project Path="src\Integrations\FoodExpress.ScalarOpenApi\FoodExpress.ScalarOpenApi.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/src/Migrations/">

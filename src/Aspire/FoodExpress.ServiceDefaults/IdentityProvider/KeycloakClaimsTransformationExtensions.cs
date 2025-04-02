@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-
-namespace FoodExpress.ServiceDefaults.IdentityProvider;
+﻿namespace FoodExpress.ServiceDefaults.IdentityProvider;
 
 public static class KeycloakClaimsTransformationExtensions
 {
@@ -10,6 +8,8 @@ public static class KeycloakClaimsTransformationExtensions
     /// </summary>
     public static void AddKeycloakClaimsTransformation(this IHostApplicationBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+
         builder.Services.AddTransient<IClaimsTransformation, KeycloakRolesClaimsTransformation>();
     }
 }

@@ -1,12 +1,24 @@
 ﻿// Global using directives
 
+global using System.Collections.ObjectModel;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Security.Claims;
 global using System.Text;
+global using System.Text.Json.Nodes;
 global using Asp.Versioning.ApiExplorer;
 global using BuildingBlocks.Constants;
+global using BuildingBlocks.SharedKernel.ActivityScope;
+global using BuildingBlocks.SharedKernel.Logging;
+global using HealthChecks.UI.Client;
+global using MassTransit.Logging;
+global using MassTransit.Monitoring;
+global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Mvc.ApiExplorer;
 global using Microsoft.AspNetCore.OpenApi;
+global using Microsoft.AspNetCore.Routing;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -14,5 +26,6 @@ global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Primitives;
 global using Microsoft.OpenApi.Models;
+global using OpenTelemetry;
 global using OpenTelemetry.Metrics;
 global using OpenTelemetry.Trace;

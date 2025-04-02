@@ -8,7 +8,7 @@ public static class Extensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        var messaging = builder.Configuration.GetConnectionString(ServiceName.EventBus);
+        var messaging = builder.Configuration.GetConnectionString(ServiceName.Queue);
 
         if (string.IsNullOrWhiteSpace(messaging))
         {
