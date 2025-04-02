@@ -1,3 +1,5 @@
+using Services.Catalog.Api;
+
 StaticLogger.EnsureInitialized();
 Log.Information("server booting up..");
 
@@ -8,12 +10,15 @@ try
     builder.AddServiceDefaults();
 
     builder.AddApplicationServices();
+    builder.Services.AddAsyncApiDocs([typeof(ICatalogApiAssemblyMaker)], "Catalog");
 
     var app = builder.Build();
 
     app.MapDefaultEndpoints();
 
     app.UseApplicationServices();
+
+    app.MapAsyncApi();
 
     await app.RunAsync();
 }

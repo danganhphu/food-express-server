@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.Caching.Hybrid;
+﻿namespace Services.Catalog.Features.Brands.GetById.v1;
 
-namespace Services.Catalog.Features.Brands.GetById.v1;
-
-public sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfReadRepository<Brand> readRepository,
-                                        HybridCache cache)
+public sealed class GetBrandByIdHandler([FromKeyedServices("catalog:read")] IEfReadRepository<Brand> readRepository)
     : ICoreQueryHandler<GetBrandByIdQuery, Result<BrandDto>>
 {
     public async Task<Result<BrandDto>> Handle(GetBrandByIdQuery query, CancellationToken cancellationToken)

@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ApiGateway\FoodExpress.ApiGateway\FoodExpress.ApiGateway.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" IsAspireProjectResource="false" />
+    <ProjectReference Include="..\..\Integrations\FoodExpress.HealthChecksUI\FoodExpress.HealthChecksUI.csproj" IsAspireProjectResource="false"/>
     <ProjectReference Include="..\..\Integrations\FoodExpress.ScalarOpenApi\FoodExpress.ScalarOpenApi.csproj" IsAspireProjectResource="false"/>
     <ProjectReference Include="..\..\Services\Catalog\Services.Catalog.Api\Services.Catalog.Api.csproj" />
     <ProjectReference Include="..\..\Services\Ordering\Services.Ordering.Api\Services.Ordering.Api.csproj" />

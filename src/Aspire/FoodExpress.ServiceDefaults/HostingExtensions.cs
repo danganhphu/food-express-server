@@ -30,7 +30,7 @@ public static class HostingExtensions
     {
         builder.Logging.EnableEnrichment();
         builder.Services.AddHttpContextAccessor();
-        builder.Services.AddLogEnricher<ApplicationEnricher>();
+        // builder.Services.AddLogEnricher<ApplicationEnricher>();
         builder.Logging.AddOpenTelemetry(
             logging =>
             {

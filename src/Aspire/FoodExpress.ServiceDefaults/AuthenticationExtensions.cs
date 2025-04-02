@@ -6,7 +6,7 @@ public static class AuthenticationExtensions
                                                                    string realm = "foodexpress")
     {
         ArgumentNullException.ThrowIfNull(builder);
-        builder.Services.AddAuthentication()
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddKeycloakJwtBearer(
                    ServiceName.IdentityProvider,
                    realm: realm,
@@ -15,26 +15,24 @@ public static class AuthenticationExtensions
                        options.RequireHttpsMetadata = false;
                        options.Audience = "account";
 
-                       options.TokenValidationParameters.ValidIssuers = [options.Authority];
-                   #pragma warning disable CA5404
-                       options.TokenValidationParameters.ValidateAudience = false;
-                   #pragma warning restore CA5404
+                           options.TokenValidationParameters.ValidIssuers = [options.Authority];
+                       #pragma warning disable CA5404
+                           options.TokenValidationParameters.ValidateAudience = false;
+                       #pragma warning restore CA5404
 
                        // Prevent from mapping "sub" claim to nameidentifier.
                        options.MapInboundClaims = false;
                    });
-        
+
         builder.Services.AddAuthorizationBuilder()
                .AddPolicy(
                    Authorization.Policies.Admin,
-                   policy => policy.RequireRole(Authorization.Roles.Admin)
-               )
+                   policy => policy.RequireRole(Authorization.Roles.Admin))
                .AddPolicy(Authorization.Policies.User, policy => policy.RequireAuthenticatedUser())
                .SetDefaultPolicy(
-                   new AuthorizationPolicyBuilder(Authorization.Policies.User)
+                   new AuthorizationPolicyBuilder()
                        .RequireAuthenticatedUser()
-                       .Build()
-               );
+                       .Build());
 
         return builder;
     }

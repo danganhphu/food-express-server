@@ -6,5 +6,5 @@ public static class ResourceNameApi
 
     public const string Order = "Ordering-api";
 
-    public const string GatewayBff = "gateway";
+    public const string Gateway = "gateway";
 }

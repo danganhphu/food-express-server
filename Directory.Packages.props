@@ -26,7 +26,6 @@
     <PackageVersion Include="Aspire.Keycloak.Authentication" Version="9.1.0-preview.1.25121.10" />
     <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
     <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.1.0" />
-    <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.1.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="EFCore.NamingConventions" Version="9.0.0" />

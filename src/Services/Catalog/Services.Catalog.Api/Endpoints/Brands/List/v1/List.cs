@@ -1,4 +1,5 @@
-﻿using Services.Catalog.Features.Brands.List.v1;
+﻿using BuildingBlocks.Constants;
+using Services.Catalog.Features.Brands.List.v1;
 
 namespace Services.Catalog.Api.Endpoints.Brands.List.v1;
 
@@ -8,6 +9,7 @@ public sealed class List(ISender sender) : EndpointWithoutRequest<BrandListRespo
     {
         Get(ApiRoutes.Brand.List);
 
+        Policies(Authorization.Roles.Admin);
         Group<BrandGrouping>();
     }
 

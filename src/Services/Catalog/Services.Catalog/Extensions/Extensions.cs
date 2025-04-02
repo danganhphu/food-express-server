@@ -1,5 +1,6 @@
-﻿using FoodExpress.ServiceDefaults.IdentityProvider;
-using Services.Catalog.Infrastructure.Caching;
+﻿using FoodExpress.ServiceDefaults.Cors;
+using FoodExpress.ServiceDefaults.IdentityProvider;
+using FoodExpress.ServiceDefaults.OpenApi;
 
 namespace Services.Catalog.Extensions;
 
@@ -11,8 +12,12 @@ public static class Extensions
 
         builder.CreateApiVersion();
 
-        builder.AddDefaultAuthentication().AddKeycloakClaimsTransformation();
+        builder.AddCorsPolicy(builder.Configuration);
+        
+        builder.Services.AddDefaultOpenApi();
 
+        // builder.AddDefaultAuthentication().AddKeycloakClaimsTransformation();
+        builder.AddDefaultAuthentication();
 
         builder.Services.AddHttpContextAccessor();
 
@@ -35,8 +40,6 @@ public static class Extensions
         builder.Services.AddSingleton<IActivityScope, ActivityScope>();
         builder.Services.AddSingleton<CommandHandlerMetrics>();
         builder.Services.AddSingleton<QueryHandlerMetrics>();
-
-        builder.AddConfigureHybridCache();
         
         return builder;
     }
@@ -45,6 +48,10 @@ public static class Extensions
     {
         ArgumentNullException.ThrowIfNull(app);
 
+        app.UseCorsPolicy();
+        
+        app.MapOpenApi();
+        
         app.UseAuthentication()
            .UseAuthorization()
            .UseDefaultExceptionHandler(app.Logger, true, true)
