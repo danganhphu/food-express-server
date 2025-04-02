@@ -3,14 +3,14 @@
   "isRoot": true,
   "tools": {
     "dotnet-outdated-tool": {
-      "version": "4.6.7",
+      "version": "4.6.8",
       "commands": [
         "dotnet-outdated"
       ],
       "rollForward": false
     },
     "dotnet-ef": {
-      "version": "9.0.2",
+      "version": "9.0.3",
       "commands": [
         "dotnet-ef"
       ],
@@ -24,9 +24,16 @@
       "rollForward": false
     },
     "aspirate": {
-      "version": "9.0.2",
+      "version": "9.1.0",
       "commands": [
         "aspirate"
+      ],
+      "rollForward": false
+    },
+    "dotnet-sonarscanner": {
+      "version": "10.1.1",
+      "commands": [
+        "dotnet-sonarscanner"
       ],
       "rollForward": false
     }

@@ -1,23 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>7c7fe9cb-cd33-47d3-a60f-c35d288d1e29</UserSecretsId>
+    <NoWarn>ASPIRECOSMOSDB001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.Azure.CosmosDB" />
+    <PackageReference Include="Aspire.Hosting.Azure.SignalR" />
+    <PackageReference Include="Aspire.Hosting.Azure.Storage" />
     <PackageReference Include="Aspire.Hosting.Keycloak" />
     <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="Aspire.Hosting.Qdrant" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" />
     <PackageReference Include="Aspire.Hosting.Redis" />
   </ItemGroup>
 
+  <ItemGroup Label="CommunityToolkit">
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.MailPit" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\..\ApiGateway\FoodExpress.ApiGateway\FoodExpress.ApiGateway.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Constants\BuildingBlocks.Constants.csproj" IsAspireProjectResource="false" />
+    <ProjectReference Include="..\..\Integrations\FoodExpress.HealthChecksUI\FoodExpress.HealthChecksUI.csproj" IsAspireProjectResource="false"/>
+    <ProjectReference Include="..\..\Integrations\FoodExpress.ScalarOpenApi\FoodExpress.ScalarOpenApi.csproj" IsAspireProjectResource="false"/>
     <ProjectReference Include="..\..\Services\Catalog\Services.Catalog.Api\Services.Catalog.Api.csproj" />
     <ProjectReference Include="..\..\Services\Ordering\Services.Ordering.Api\Services.Ordering.Api.csproj" />
   </ItemGroup>

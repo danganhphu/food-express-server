@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace FoodExpress.ServiceDefaults.Cors;
+﻿namespace FoodExpress.ServiceDefaults.Cors;
 
 public class CorsOptions
 {

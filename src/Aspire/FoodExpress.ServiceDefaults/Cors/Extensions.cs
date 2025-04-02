@@ -1,10 +1,10 @@
 ﻿namespace FoodExpress.ServiceDefaults.Cors;
 
-internal static class Extensions
+public static class Extensions
 {
     private const string CorsPolicy = nameof(CorsPolicy);
 
-    internal static TBuilder AddCorsPolicy<TBuilder>(this TBuilder builder, IConfiguration config)
+    public static TBuilder AddCorsPolicy<TBuilder>(this TBuilder builder, IConfiguration config)
         where TBuilder : IHostApplicationBuilder
     {
         var corsOptions = config.GetSection(nameof(CorsOptions)).Get<CorsOptions>();
@@ -25,6 +25,6 @@ internal static class Extensions
         return builder;
     }
 
-    internal static IApplicationBuilder UseCorsPolicy(this IApplicationBuilder app)
+    public static IApplicationBuilder UseCorsPolicy(this IApplicationBuilder app)
         => app.UseCors(CorsPolicy);
 }

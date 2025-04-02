@@ -2,27 +2,36 @@
 
 internal static class OpenApiOptionsExtensions
 {
-    public static OpenApiOptions ApplyApiVersionInfo(this OpenApiOptions options,
-                                                     string title,
-                                                     string description)
+    public static OpenApiOptions ApplyApiVersionInfo(this OpenApiOptions options)
     {
         options.AddDocumentTransformer(
             (document, context, _) =>
             {
-                var versionedDescriptionProvider =
-                    context.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
-                var apiDescription =
-                    versionedDescriptionProvider?.ApiVersionDescriptions.SingleOrDefault(
-                        versionDescription => versionDescription.GroupName == context.DocumentName);
+                var apiDescription = context
+                                     .ApplicationServices.GetService<IApiVersionDescriptionProvider>()
+                                     ?.ApiVersionDescriptions.SingleOrDefault(
+                                         versionDescription =>
+                                             versionDescription.GroupName == context.DocumentName);
 
                 if (apiDescription is null)
                 {
                     return Task.CompletedTask;
                 }
 
+                document.Info.License = new()
+                {
+                    Name = "MIT",
+                    Url = new("https://opensource.org/licenses/MIT"),
+                };
+
+                document.Info.Contact = new()
+                {
+                    Name = "Phu Dang",
+                    Url = new("https://github.com/danganhphu"),
+                };
+
                 document.Info.Version = apiDescription.ApiVersion.ToString();
-                document.Info.Title = title;
-                document.Info.Description = BuildDescription(apiDescription, description);
+                document.Info.Description = BuildDescription(apiDescription);
 
                 return Task.CompletedTask;
             });
@@ -30,9 +39,9 @@ internal static class OpenApiOptionsExtensions
         return options;
     }
 
-    private static string BuildDescription(ApiVersionDescription api, string description)
+    private static string BuildDescription(ApiVersionDescription api)
     {
-        var text = new StringBuilder(description);
+        var text = new StringBuilder();
 
         if (api.IsDeprecated)
         {
@@ -50,7 +59,9 @@ internal static class OpenApiOptionsExtensions
         }
 
         if (api.SunsetPolicy is not { } policy)
+        {
             return text.ToString();
+        }
 
         if (policy.Date is { } when)
         {
@@ -65,7 +76,9 @@ internal static class OpenApiOptionsExtensions
         }
 
         if (!policy.HasLinks)
+        {
             return text.ToString();
+        }
 
         text.AppendLine();
 
@@ -97,47 +110,12 @@ internal static class OpenApiOptionsExtensions
         return text.ToString();
     }
 
-    public static OpenApiOptions ApplySecuritySchemeDefinitions(this OpenApiOptions options)
+    public static void ApplySecuritySchemeDefinitions(this OpenApiOptions options)
     {
         options.AddDocumentTransformer<SecuritySchemeDefinitionsTransformer>();
-
-        return options;
     }
 
-    public static OpenApiOptions ApplyAuthorizationChecks(this OpenApiOptions options,
-                                                          string[] scopes)
-    {
-        options.AddOperationTransformer(
-            (operation, context, _) =>
-            {
-                var metadata = context.Description.ActionDescriptor.EndpointMetadata;
-
-                if (!metadata.OfType<IAuthorizeData>().Any())
-                {
-                    return Task.CompletedTask;
-                }
-
-                operation.Responses.TryAdd(
-                    "401",
-                    new() { Description = "Unauthorized" });
-                operation.Responses.TryAdd(
-                    "403",
-                    new() { Description = "Forbidden" });
-
-                var oAuthScheme = new OpenApiSecurityScheme
-                {
-                    Reference = new() { Type = ReferenceType.SecurityScheme, Id = "oauth2", }
-                };
-
-                operation.Security = [new() { [oAuthScheme] = scopes }];
-
-                return Task.CompletedTask;
-            });
-
-        return options;
-    }
-
-    public static OpenApiOptions ApplyOperationDeprecatedStatus(this OpenApiOptions options)
+    public static void ApplyOperationDeprecatedStatus(this OpenApiOptions options)
     {
         options.AddOperationTransformer(
             (operation, context, _) =>
@@ -147,17 +125,17 @@ internal static class OpenApiOptionsExtensions
 
                 return Task.CompletedTask;
             });
-
-        return options;
     }
 
-    public static OpenApiOptions ApplySchemaNullableFalse(this OpenApiOptions options)
+    public static void ApplySchemaNullableFalse(this OpenApiOptions options)
     {
         options.AddSchemaTransformer(
             (schema, _, _) =>
             {
                 if (schema.Properties is null)
+                {
                     return Task.CompletedTask;
+                }
 
                 foreach (var property in schema.Properties)
                 {
@@ -169,52 +147,36 @@ internal static class OpenApiOptionsExtensions
 
                 return Task.CompletedTask;
             });
-
-        return options;
     }
 
-    public class SecuritySchemeDefinitionsTransformer(IConfiguration configuration)
-        : IOpenApiDocumentTransformer
+    private sealed class SecuritySchemeDefinitionsTransformer(
+        IAuthenticationSchemeProvider authenticationSchemeProvider) : IOpenApiDocumentTransformer
     {
-        public Task TransformAsync(OpenApiDocument document,
-                                   OpenApiDocumentTransformerContext context,
-                                   CancellationToken cancellationToken)
+        public async Task TransformAsync(OpenApiDocument document,
+                                         OpenApiDocumentTransformerContext context,
+                                         CancellationToken cancellationToken)
         {
-            var identitySection = configuration.GetSection(nameof(Identity));
+            var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
 
-            if (!identitySection.Exists())
+            if (
+                authenticationSchemes.Any(
+                    authScheme =>
+                        authScheme.Name == JwtBearerDefaults.AuthenticationScheme)
+            )
             {
-                return Task.CompletedTask;
-            }
-
-            var identity = identitySection.Get<Identity>();
-
-            var identityUrlExternal = identity?.Url;
-            var scopes = identitySection
-                         .GetRequiredSection("Scopes")
-                         .GetChildren()
-                         .ToDictionary(p => p.Key, p => p.Value);
-
-            var securityScheme = new OpenApiSecurityScheme
-            {
-                Type = SecuritySchemeType.OAuth2,
-                Flows = new()
+                var requirements = new Dictionary<string, OpenApiSecurityScheme>
                 {
-                    AuthorizationCode = new()
+                    [JwtBearerDefaults.AuthenticationScheme] = new()
                     {
-                        AuthorizationUrl =
-                            new($"{identityUrlExternal}/realms/{nameof(FoodExpress)}/protocol/openid-connect/auth"),
-                        TokenUrl = new(
-                            $"{identityUrlExternal}/realms/{nameof(FoodExpress)}/protocol/openid-connect/token"),
-                        Scopes = scopes,
-                    }
-                },
-            };
-
-            document.Components ??= new();
-            document.Components.SecuritySchemes.Add("oauth2", securityScheme);
-
-            return Task.CompletedTask;
+                        Type = SecuritySchemeType.Http,
+                        Scheme = JwtBearerDefaults.AuthenticationScheme,
+                        In = ParameterLocation.Header,
+                        BearerFormat = "Json Web Token",
+                    },
+                };
+                document.Components ??= new();
+                document.Components.SecuritySchemes = requirements;
+            }
         }
     }
 }
