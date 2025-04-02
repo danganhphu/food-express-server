@@ -8,10 +8,10 @@ alias b := build
 alias r := run
 
 upgrade-all-version:
-  dotnet-outdated food-express.sln -u
+  dotnet-outdated food-express.slnx -u
 
 build:
-  dotnet build food-express.sln
+  dotnet build food-express.slnx
 
 run:
-  dotnet run --project src\Aspire\AirlineSuite.AppHost\AirlineSuite.AppHost.csproj
+  dotnet run --project .\src\Aspire\FoodExpress.AppHost\FoodExpress.AppHost.csproj
