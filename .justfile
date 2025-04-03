@@ -8,6 +8,9 @@ alias b := build
 alias r := run
 alias ss := setup-secrets
 
+default:
+  @just run
+
 upgrade-all-version:
   dotnet-outdated food-express.slnx -u
   
